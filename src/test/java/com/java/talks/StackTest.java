@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertNull;
 
 
 public class StackTest {
@@ -88,10 +89,32 @@ public class StackTest {
 
     @Test(expected = Stack.OverflowException.class)
     public void pushedOverFullStackShouldFail() throws Exception {
-        stack = new Stack(2);
+        Stack stack = new Stack(2);
         stack.push(12);
         stack.push(12);
         stack.push(12);
+    }
 
+
+    @Test
+    public void topOverEmptyStackShouldReturnNull() throws Exception {
+        assertNull(stack.top());
+    }
+
+
+    @Test
+    public void whenOneIsPushedThenTopReturnsOne() throws Exception {
+        stack.push(30);
+
+        assertThat(stack.top(), is(30));
+    }
+
+
+    @Test
+    public void whenOneAndTwoArePushedThenTopReturnsTwo() throws Exception {
+        stack.push(30);
+        stack.push(40);
+
+        assertThat(stack.top(), is(40));
     }
 }

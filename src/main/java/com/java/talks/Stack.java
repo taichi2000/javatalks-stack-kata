@@ -42,6 +42,14 @@ public class Stack {
     }
 
 
+    public Integer top() {
+        if (isEmpty())
+            return null;
+
+        return elements[capacity-1];
+    }
+
+
     public class UnderflowException extends RuntimeException {
 
     }
