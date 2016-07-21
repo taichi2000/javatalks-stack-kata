@@ -4,7 +4,7 @@ package com.java.talks;
 public class Stack {
 
     private int capacity;
-    private int last;
+    private int[] elements = new int[100];
 
 
     public boolean isEmpty() {
@@ -13,7 +13,8 @@ public class Stack {
 
 
     public void push(int item) {
-        last = item;
+        elements[capacity] = item;
+
         capacity++;
     }
 
@@ -25,7 +26,7 @@ public class Stack {
 
     public int pop() {
         capacity--;
-        return last;
 
+        return elements[capacity];
     }
 }
