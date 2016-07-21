@@ -35,6 +35,47 @@ public class StackTest {
 
     @Test
     public void whenOneIsPushCapacityIsOne() throws Exception {
+        stack.push(1);
 
+        assertThat(stack.capacity(), is(1));
+    }
+
+
+    @Test
+    public void whenOneAndTwoArePushedCapacityIsTwo() throws Exception {
+        stack.push(1);
+        stack.push(2);
+
+        assertThat(stack.capacity(), is(2));
+    }
+
+
+    @Test
+    public void whenOneIsPushedThenOneIsPopped() throws Exception {
+        stack.push(1);
+        assertThat(stack.capacity(), is(1));
+
+        assertThat(stack.pop(), is(1));
+        assertThat(stack.capacity(), is(0));
+    }
+
+
+    @Test
+    public void when42IsPushedThen42IsPopped() throws Exception {
+        stack.push(42);
+        assertThat(stack.capacity(), is(1));
+
+        assertThat(stack.pop(), is(42));
+        assertThat(stack.capacity(), is(0));
+    }
+
+
+    @Test
+    public void whenOneAndTwoArePushedThenTwoAndOneArePopped() throws Exception {
+        stack.push(1);
+        stack.push(2);
+
+        assertThat(stack.pop(), is(2));
+        assertThat(stack.pop(), is(1));
     }
 }
