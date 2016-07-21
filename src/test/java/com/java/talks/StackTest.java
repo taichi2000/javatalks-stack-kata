@@ -15,7 +15,7 @@ public class StackTest {
 
     @Before
     public void setUp() throws Exception {
-        stack = new Stack();
+        stack = new Stack(5);
     }
 
 
@@ -77,5 +77,21 @@ public class StackTest {
 
         assertThat(stack.pop(), is(2));
         assertThat(stack.pop(), is(1));
+    }
+
+
+    @Test(expected = Stack.UnderflowException.class)
+    public void popOverEmptyStackShouldFail() throws Exception {
+        stack.pop();
+    }
+
+
+    @Test(expected = Stack.OverflowException.class)
+    public void pushedOverFullStackShouldFail() throws Exception {
+        stack = new Stack(2);
+        stack.push(12);
+        stack.push(12);
+        stack.push(12);
+
     }
 }
